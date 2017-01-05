@@ -2,8 +2,22 @@ print('''
 TextBased Adventure Game
 by Gerrit Ohrner
 ''')
+
+#import os
+#filePath = os.path.dirname(os.path.abspath(__file__))
+#with open(filePath + '\\Test.txt', "r") as f:
+#	content = f.readlines()
+#print(content)
+
 import os # os.system('cls' if os.name == 'nt' else 'clear') ///to clear the terminalscreen
 os.system('cls' if os.name == 'nt' else 'clear')
+filePath = os.path.dirname(os.path.abspath(__file__)) #Saves the path where the script is running in the variable filePath
+with open(filePath + '\\wrong_input.txt', "r") as q:
+content_input = q.readlines()
+with open(filePath + '\\hittin_walls.txt', "r") as y:
+content_walls = y.readlines()
+Iinput = 0
+Winput = 0
 rcounter = 5
 rcounterBackup = 0
 direction = ""
@@ -29,13 +43,28 @@ def rooms(rcounter):
 		print(' 7 8(9)\n 4 5 6\n 1 2 3')
 	return rcounter
 
-def hittin_walls(rcounter, rcounterBackup):
-#	#Mehrere texte, wenn man die Waende beruehrt
-#	#irgendwann laesst man den spieler genervt auf der anderen seite erscheinen. (Well, you are a wizard now. Are you happy?)
-	print('You can\'t go this way, there is a Wall.')
-	input()
-	return rcounter
+def hittin_walls():
+	if Winput != 0:
+		for Winput <= len(content_walls)
+			print(content_walls[Winput])
+			Winput++
+			break
+	else:
+		print(content_walls[0])
+	#content_walls
+	#Mehrere texte, wenn man die Waende beruehrt
+	#irgendwann laesst man den spieler genervt auf der anderen Seite erscheinen. 
+	#counter reseten, wenn man nicht mehr gegen eine Wand läuft
 
+	input()
+	return
+
+def wrong_input():
+	#content_input
+	input()
+	#jedes mal, wenn man keine Richtung eingibt (north, east, south, west), wird ein 
+	#Zaehler incrementiert und aufeinander folgende Texte werden ausgegeben.
+	
 while direction != "exit":
 	rooms(rcounter)
 	direction = input('In which direction do you want to move?(north/east/south/west)')
@@ -45,27 +74,25 @@ while direction != "exit":
 	elif direction == 'east':
 		if rcounter == 3 or rcounter == 6:
 			rcounter = rcounterBackup
-			hittin_walls(rcounter, rcounterBackup)
+			hittin_walls()
 		else:
 			rcounter = rcounter + 1
 	elif direction == 'south':
 		rcounter = rcounter - 3
 	elif direction == 'west':
 		if rcounter == 4 or rcounter == 7:
-			hittin_walls(rcounter, rcounterBackup)
 			rcounter = rcounterBackup
+			hittin_walls()
 		else:
 			rcounter = rcounter - 1
 	else:
-		print('Thats not actually a direction, you know?')
-		input()
+		wrong_input()
 	
 	if rcounter < 1:
 		rcounter = rcounterBackup
-		hittin_walls(rcounter, rcounterBackup)
+		hittin_walls()
 	elif rcounter > 9:
 		rcounter = rcounterBackup
-		hittin_walls(rcounter, rcounterBackup)
+		hittin_walls()
 	input()
 	os.system('cls' if os.name == 'nt' else 'clear')
-	
