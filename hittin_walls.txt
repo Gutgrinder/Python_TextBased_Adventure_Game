@@ -1,0 +1,2 @@
+You can't go there. There is a wall.
+You still can't go there. The wall hasn't moved.
